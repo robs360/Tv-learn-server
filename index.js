@@ -50,12 +50,20 @@ async function run() {
         const spot=req.body;
         const filter={_id:new ObjectId(id)};
         const options={upsert:true};
-        const updaeUser={
+        const updateUser={
           $set: {
-            name:spot.name,
+            country:spot.country,
+            location:spot.location,
+            cost:spot.cost,
+            travel_time:spot.travel_time,
+            spotname:spot.spotname,
+            visitors:spot.visitors,
+            season:spot.season,
+            photo:spot.photo,
+            describ:spot.describ,
          },
         }
-        const result=await spotCollection.updateOne(filter,updaeUser,options)
+        const result=await spotCollection.updateOne(filter,updateUser,options)
         res.send(result);
     })
     app.post('/spot', async (req,res)=>{
