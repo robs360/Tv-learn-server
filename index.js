@@ -66,7 +66,7 @@ async function run() {
         const result=await spotCollection.updateOne(filter,updateUser,options)
         res.send(result);
     })
-    app.post('/spot', async (req,res)=>{
+    app.post('/spo', async (req,res)=>{
             const spot=req.body;
             const result= await spotCollection.insertOne(spot);
              res.send(result);
