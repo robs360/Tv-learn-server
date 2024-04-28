@@ -43,6 +43,20 @@ async function run() {
          const id=req.params.id
          const query={_id: new ObjectId(id)}
          const result=await spotCollection.deleteOne(query)
+         res.send(result);
+    })
+    app.put('/spot/:id', async (req,res)=>{
+        const id=req.params.id;
+        const spot=req.body;
+        const filter={_id:new ObjectId(id)};
+        const options={upsert:true};
+        const updaeUser={
+          $set: {
+            name:spot.name,
+         },
+        }
+        const result=await spotCollection.updateOne(filter,updaeUser,options)
+        res.send(result);
     })
     app.post('/spot', async (req,res)=>{
             const spot=req.body;
