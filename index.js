@@ -26,13 +26,18 @@ async function run() {
     
     await client.connect();
     const spotCollection=client.db('spotDB').collection('spot')
-
+    const countryClollection=client.db('spotDB').collection('country')
+   
     app.get('/spot', async (req,res)=>{
         const cursor=spotCollection.find();
         const result=await cursor.toArray();
         res.send(result);
     })
-    
+   app.get('/country',async (req,res)=>{
+    const cursor=countryClollection.find();
+    const result=await cursor.toArray();
+    res.send(result);
+   })
     app.get('/spot/:id',async (req,res)=>{
        const id=req.params.id;
        const query= {_id: new ObjectId(id)};
